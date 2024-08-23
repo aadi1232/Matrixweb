@@ -1,0 +1,102 @@
+/* General container styles */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #181818; /* Dark background */
+    color: #FFFFFF; /* White text */
+    padding: 50px;
+  }
+  
+  /* Leads section styling */
+  .team-section.leads {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  
+  /* Team columns for Team 1 and Team 2 */
+  .team-sections {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  
+  .team-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .team-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Team 3 section styling */
+  .team-section.team-3 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  /* Circular team member div */
+  .team-member-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #333333; /* Dark grey background */
+    margin-bottom: 15px; /* Spacing between circle and text */
+  }
+  
+  /* Text styling */
+  .team-member-circle h2 {
+    font-size: 1.2rem;
+    margin: 5px 0;
+  }
+  
+  .team-member-circle p {
+    font-size: 0.9rem;
+    color: #BBBBBB; /* Light grey for the role text */
+  }
+  
+  /* Animation for sliding in from the left */
+  .from-left {
+    animation: slideInLeft 1s ease forwards;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Animation for sliding in from the right */
+  .from-right {
+    animation: slideInRight 1s ease forwards;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  

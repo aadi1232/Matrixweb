@@ -1,0 +1,44 @@
+/* Body and background */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navbar styling */
+  .navbar {
+    background-color: #212529; /* Dark grey background */
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+  }
+  
+  .logo {
+    width: 40px; /* Adjust the size as necessary */
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle; 
+    background-image: url(./photos/WhatsApp\ Image\ 2024-08-23\ at\ 22.59.54_387a3111.jpg);
+    background-size: cover;
+  }
+  
+  .nav-link {
+    color: #FFFFFF;
+    margin-left: 20px;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #CCCCCC; /* Light grey on hover for a subtle effect */
+  }
+  
+  /* Adjust button appearance for a cohesive look */
+  .btn:focus, .btn:active {
+    box-shadow: none; /* Removes focus outline for a clean design */
+  }
+  
+

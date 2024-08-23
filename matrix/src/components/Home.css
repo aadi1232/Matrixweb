@@ -1,0 +1,117 @@
+/* General styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #181818; /* Dark background */
+    color: #FFFFFF; /* White text */
+  }
+  
+  /* Timeline container */
+  .timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0;
+  }
+  
+  /* Timeline event styling */
+  .timeline-event {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    width: 80%; /* Increase the width */
+    margin-bottom: 50px;
+    visibility: hidden; /* Initially hidden */
+    opacity: 0;
+    transform: translateY(50px); /* Start slightly below */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .timeline-event.left {
+    justify-content: flex-start;
+  }
+  
+  .timeline-event.right {
+    justify-content: flex-end;
+  }
+  
+  /* Content inside the timeline event */
+  .content {
+    background-color: #fffdfd; /* Dark grey background */
+    padding: 40px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 6px 10px rgb(0, 0, 0);
+    width: 40%; /* Adjust to make space for description */
+    text-align: left;
+    z-index: 1; /* Ensure the content is above the timeline line */
+  }
+  
+  /* Event number styling */
+  .event-number {
+    position: absolute;
+    top: -50px; /* Position the number above the div */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    background-color: #181818;
+    padding: 10px 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2; /* Ensure the number is on top of everything */
+  }
+  
+  /* Description beside the event div */
+  .description {
+    width: 50%;
+    padding: 20px;
+    color: #000000;
+    font-size: 1.1rem;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .timeline-event.left .description {
+    margin-left: 20px;
+  }
+  
+  .timeline-event.right .description {
+    margin-right: 20px;
+  }
+  
+  /* Timeline line underneath the divs */
+  .timeline-line {
+    position: absolute;
+    height: 6px;
+    background-color: #333333;
+    width: calc(100% - 40px); /* Ensure the line spans the width under the div */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px; /* Position it below the div */
+    z-index: 0; /* Place it beneath everything */
+  }
+  
+  /* When the timeline event is visible */
+  .timeline-event.appear {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0); /* Reset position */
+  }
+  
+  /* Responsive styling */
+  @media screen and (max-width: 768px) {
+    .timeline-event {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .content, .description {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .timeline-line {
+      top: 100%; /* Move line below the content on small screens */
+    }
+  }
+  
