@@ -1,7 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 
 const Home = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   const events = [
     { number: 1, title: 'Event 1', date: 'January 2023', description: 'Description of event 1.' },
     { number: 2, title: 'Event 2', date: 'February 2023', description: 'Description of event 2.' },
@@ -43,18 +49,32 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="timeline">
-      {events.map((event, index) => (
-        <div key={index} className={`timeline-event ${index % 2 === 0 ? 'left' : 'right'}`}>
-          <div className="content">
-            <div className="event-number">{event.number}</div>
-            <h2>{event.title}</h2>
-            <p className="date">{event.date}</p>
+    <div>
+      {/* Hamburger Menu */}
+      <div className="hamburger-menu" onClick={toggleMenu}>
+        ☰
+      </div>
+
+      {/* Header Menu Items */}
+      <div className={`menu-items ${menuOpen ? 'open' : ''}`}>
+        <a href="/about">About</a>
+        <a href="/resources">Resources</a>
+        <a href="/assignments">Assignments</a>
+      </div>
+
+      <div className="timeline">
+        {events.map((event, index) => (
+          <div key={index} className={`timeline-event ${index % 2 === 0 ? 'left' : 'right'}`}>
+            <div className="content">
+              <div className="event-number">{event.number}</div>
+              <h2>{event.title}</h2>
+              <p className="date">{event.date}</p>
+            </div>
+            <p className="description">{event.description}</p>
           </div>
-          <p className="description">{event.description}</p>
-        </div>
-      ))}
-      <div className="timeline-line"></div>
+        ))}
+        <div className="timeline-line"></div>
+      </div>
     </div>
   );
 };

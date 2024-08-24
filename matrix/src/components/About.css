@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #181818; /* Dark background */
+    background-color: grey; /* Dark background */
     color: #FFFFFF; /* White text */
     padding: 50px;
   }
@@ -13,6 +13,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 50px;
+    color: white;
   }
   
   /* Team columns for Team 1 and Team 2 */
@@ -21,12 +22,15 @@
     justify-content: space-around;
     width: 100%;
     margin-bottom: 50px;
+    color: white;
+    
   }
   
   .team-column {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   
   .team-row {
@@ -100,3 +104,7 @@
     }
   }
   
+  .team-member-circle p {
+    color: white;/* Change this to your desired color */
+    font-weight: bolder; /* Optional: Make the text bold */
+  }

@@ -115,3 +115,44 @@ body {
     }
   }
   
+  .hamburger-menu {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .menu-items {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .menu-items.open {
+    display: flex;
+  }
+  
+  .menu-items a {
+    margin: 10px 0;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+  }
+  
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: block;
+    }
+  
+    .menu-items {
+      display: none;
+      flex-direction: column;
+    }
+  
+    .menu-items.open {
+      display: flex;
+    }
+  }
+  
