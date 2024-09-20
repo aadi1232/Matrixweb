@@ -6,6 +6,7 @@ import About from './components/About';
 import Footer from './components/Footer';
 import ResourceList from './components/ResourceList';
 import Admin from './components/Admin'; // Import the Admin component
+import EventDetail from './components/EventDetail';
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/resources" element={<ResourceList />} />
-            <Route path="/admin" element={<Admin />} /> {/* Add route for Admin */}
+            <Route path="/admin" element={<Admin />} /> 
+            <Route path="/event/:eventId" element={<EventDetail />} />
           </Routes>
         </main>
         <Footer />

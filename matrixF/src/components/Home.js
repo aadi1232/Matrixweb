@@ -1,80 +1,121 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './Home.css';
 
+const dummyEvents = [
+  {
+    year: 2023,
+    events: [
+      {
+        id: 1,
+        title: 'Event 1',
+        date: 'January 15, 2023',
+        description: 'Description of event 1.',
+        image: 'https://via.placeholder.com/150',
+      },
+      {
+        id: 2,
+        title: 'Event 2',
+        date: 'February 12, 2023',
+        description: 'Description of event 2.',
+        image: 'https://via.placeholder.com/150',
+      },
+      {
+        id: 3,
+        title: 'Event 3',
+        date: 'March 22, 2023',
+        description: 'Description of event 3.',
+        image: 'https://via.placeholder.com/150',
+      },
+    ],
+  },
+  {
+    year: 2022,
+    events: [
+      {
+        id: 4,
+        title: 'Event 4',
+        date: 'April 5, 2022',
+        description: 'Description of event 4.',
+        image: 'https://via.placeholder.com/150',
+      },
+      {
+        id: 5,
+        title: 'Event 5',
+        date: 'June 14, 2022',
+        description: 'Description of event 5.',
+        image: 'https://via.placeholder.com/150',
+      },
+    ],
+  },
+];
+
 const Home = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeYear, setActiveYear] = useState(2023);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const handleScrollToYear = (year) => {
+    const yearSection = document.getElementById(`year-${year}`);
+    if (yearSection) {
+      yearSection.scrollIntoView({ behavior: 'smooth' });
+      setActiveYear(year);
+    }
   };
-
-  const events = [
-    { number: 1, title: 'Event 1', date: 'January 2023', description: 'Description of event 1.' },
-    { number: 2, title: 'Event 2', date: 'February 2023', description: 'Description of event 2.' },
-    { number: 3, title: 'Event 3', date: 'March 2023', description: 'Description of event 3.' },
-    { number: 4, title: 'Event 4', date: 'April 2023', description: 'Description of event 4.' },
-    { number: 5, title: 'Event 5', date: 'May 2023', description: 'Description of event 5.' },
-    { number: 6, title: 'Event 6', date: 'June 2023', description: 'Description of event 6.' },
-    { number: 7, title: 'Event 7', date: 'July 2023', description: 'Description of event 7.' },
-    { number: 8, title: 'Event 8', date: 'August 2023', description: 'Description of event 8.' },
-    { number: 9, title: 'Event 9', date: 'September 2023', description: 'Description of event 9.' },
-    { number: 10, title: 'Event 10', date: 'October 2023', description: 'Description of event 10.' }
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const timelineEvents = document.querySelectorAll('.timeline-event');
-      timelineEvents.forEach((event) => {
-        const eventPosition = event.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        // Trigger animation when the event is within the viewport
-        if (eventPosition < windowHeight - 100 && eventPosition > 0) {
-          event.classList.add('appear');
-        } else {
-          event.classList.remove('appear');
+      const yearButtons = document.querySelectorAll('.year-button');
+      yearButtons.forEach((button) => {
+        const year = button.dataset.year;
+        const section = document.getElementById(`year-${year}`);
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+          setActiveYear(Number(year));
         }
       });
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
 
-    // Trigger the scroll function initially to check positions on page load
-    handleScroll();
-
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div>
-      {/* Hamburger Menu */}
-      <div className="hamburger-menu" onClick={toggleMenu}>
-        ☰
-      </div>
-
-      {/* Header Menu Items */}
-      <div className={`menu-items ${menuOpen ? 'open' : ''}`}>
-        <a href="/about">About</a>
-        <a href="/resources">Resources</a>
-        <a href="/assignments">Assignments</a>
-      </div>
-
-      <div className="timeline">
-        {events.map((event, index) => (
-          <div key={index} className={`timeline-event ${index % 2 === 0 ? 'left' : 'right'}`}>
-            <div className="content">
-              <div className="event-number">{event.number}</div>
-              <h2>{event.title}</h2>
-              <p className="date">{event.date}</p>
-            </div>
-            <p className="description">{event.description}</p>
-          </div>
+      {/* Sticky Year Navigation */}
+      <div className="sticky-year-nav">
+        {dummyEvents.map((yearData) => (
+          <button
+            key={yearData.year}
+            className={`year-button ${activeYear === yearData.year ? 'active' : ''}`}
+            data-year={yearData.year}
+            onClick={() => handleScrollToYear(yearData.year)}
+          >
+            {yearData.year}
+          </button>
         ))}
-        <div className="timeline-line"></div>
       </div>
+
+      {/* Events Section */}
+      {dummyEvents.map((yearData) => (
+        <div key={yearData.year} id={`year-${yearData.year}`} className="year-section">
+          <h2 className="year-heading">{yearData.year} Events</h2>
+          <div className="events-container">
+            {yearData.events.map((event, index) => (
+              <div key={event.id} className={`event-card ${index % 2 === 0 ? 'left' : 'right'}`}>
+                <img src={event.image} alt={event.title} className="event-image" />
+                <div className="event-details">
+                  <h3>{event.title}</h3>
+                  <p className="event-date">{event.date}</p>
+                  <p>{event.description}</p>
+                  <Link to={`/event/${event.id}`} className="btn btn-primary">
+                    Read More
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
